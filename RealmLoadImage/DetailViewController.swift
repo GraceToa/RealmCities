@@ -7,24 +7,41 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var titleL: UILabel!
+    @IBOutlet weak var subtitleL: UILabel!
+    
+    var city: City?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let city = city {
+            titleL.text = city.title
+            subtitleL.text = city.subtitle
+            let imageDefault = UIImage(named: "placeholder")
+            image.image = UIImage(data: city.image ?? (imageDefault?.jpegData(compressionQuality: 0.20))! )
+        }
 
-        // Do any additional setup after loading the view.
+    }
+
+
+    @IBAction func editBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowEdit", sender: self)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowEdit" {
+            
+                let destin = segue.destination as! AddEditViewController
+                destin.city = city
+            
+        }
     }
-    */
 
 }

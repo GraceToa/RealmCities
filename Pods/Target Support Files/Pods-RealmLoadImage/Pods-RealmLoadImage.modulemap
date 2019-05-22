@@ -1,0 +1,6 @@
+framework module Pods_RealmLoadImage {
+  umbrella header "Pods-RealmLoadImage-umbrella.h"
+
+  export *
+  module * { export * }
+}

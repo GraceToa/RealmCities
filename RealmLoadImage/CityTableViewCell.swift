@@ -9,6 +9,11 @@
 import UIKit
 
 class CityTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var picture: UIImageView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
