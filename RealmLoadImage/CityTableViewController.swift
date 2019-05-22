@@ -74,4 +74,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate,UITableView
         RealmService.shared.deleteAll()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 }
