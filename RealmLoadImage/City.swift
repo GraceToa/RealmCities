@@ -16,7 +16,6 @@ class City: Object {
     @objc dynamic var image: Data? = nil
     @objc dynamic var id = UUID().uuidString
     
-    //para obligar que el id sea un string
     override static func primaryKey() -> String? {
         return "id"
     }

@@ -11,8 +11,8 @@ import RealmSwift
 
 class CityTableViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
-    
     @IBOutlet weak var table: UITableView!
+    
     var cityList: Results<City>!
     var notificationToken: NotificationToken?
     let realm = RealmService.shared.realm
@@ -26,11 +26,12 @@ class CityTableViewController: UIViewController, UITableViewDelegate,UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cityList = realm.objects(City.self)
-        
         notificationToken = realm.observe{ notification, realm in
             self.table.reloadData()
         }
     }
+    
+    // MARK: - UITableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cityList.count
@@ -50,6 +51,7 @@ class CityTableViewController: UIViewController, UITableViewDelegate,UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let city = self.cityList[indexPath.row]
         RealmService.shared.delete(city)
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,13 +70,8 @@ class CityTableViewController: UIViewController, UITableViewDelegate,UITableView
         }
     }
 
-
-    
     @IBAction func deleteAllBtn(_ sender: Any) {
         RealmService.shared.deleteAll()
     }
     
-    @IBAction func searchBtn(_ sender: UIBarButtonItem) {
-        
-    }
 }

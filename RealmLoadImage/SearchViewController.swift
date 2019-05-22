@@ -13,7 +13,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var table: UITableView!
+    
     var cityList = [City]()
+    let realm = RealmService.shared.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cityList.removeAll()
         queryCitiesRealm()
     }
+    
+    // MARK: - UITableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cityList.count
@@ -44,9 +48,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
             self.cityList.removeAll()
             if (textField.text?.count)! > 0 {
-                let realm = try! Realm()
                 let predicate = NSPredicate(format: "title CONTAINS [c] %@", textField.text!)
-                let filteredCity = realm.objects(City.self).filter(predicate)
+                let filteredCity = self.realm.objects(City.self).filter(predicate)
                 
                 for city in filteredCity {
                     self.cityList.append(city)
@@ -59,8 +62,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
+    // MARK: - Method private
+    
     func queryCitiesRealm() {
-        let realm = try! Realm()
         let cities = realm.objects(City.self)
         for c in cities {
             self.cityList.append(c)

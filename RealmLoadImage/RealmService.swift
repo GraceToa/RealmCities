@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 class RealmService {
+    
     private init() {}
     static let shared = RealmService()
     
@@ -55,6 +56,8 @@ class RealmService {
             post(error)
         }
     }
+    
+    
     
     func post(_ error: Error)  {
         NotificationCenter.default.post(name: NSNotification.Name("RealmError"),object: error)

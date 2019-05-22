@@ -17,7 +17,6 @@ class DetailViewController: UIViewController {
     
     var city: City?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +29,8 @@ class DetailViewController: UIViewController {
 
     }
 
-
+    // MARK: - Actions
+    
     @IBAction func editBtn(_ sender: UIButton) {
         performSegue(withIdentifier: "ShowEdit", sender: self)
     }

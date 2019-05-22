@@ -21,6 +21,7 @@ class AddEditViewController: UIViewController {
     var image: UIImage?
     var city: City?
     var id = ""
+    let realm = RealmService.shared.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,11 @@ class AddEditViewController: UIViewController {
     }
     
 
-    // MARK: - Navigation
-
+    // MARK: - Actions
 
     @IBAction func saveCity(_ sender: UIButton) {
       
         if   id != "" {
-            print("Existe CITY")
             let cityUpdate = City()
             cityUpdate.title = titleTF.text!
             cityUpdate.subtitle = subtitleTF.text!
@@ -50,8 +49,7 @@ class AddEditViewController: UIViewController {
             RealmService.shared.update(cityUpdate)
             navigationController?.popToRootViewController(animated: true)
         }else{
-            print(" NO Existe CITY")
-
+            
             let cityNew = City()
             cityNew.title = titleTF.text!
             cityNew.subtitle = subtitleTF.text!
@@ -73,7 +71,7 @@ class AddEditViewController: UIViewController {
 
 extension AddEditViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // MARK:- UIImagePickerControllerDelegate methods
+    // MARK: - UIImagePickerControllerDelegate methods
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let imageTake = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
@@ -81,7 +79,6 @@ extension AddEditViewController : UIImagePickerControllerDelegate, UINavigationC
         self.picture.contentMode = .scaleAspectFill
         self.picture.clipsToBounds = true
         image = imageTake!
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -89,7 +86,7 @@ extension AddEditViewController : UIImagePickerControllerDelegate, UINavigationC
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK:- Add Picture
+    // MARK: - Add Picture
     
     @IBAction func addPicture(sender: AnyObject) {
         
@@ -101,13 +98,13 @@ extension AddEditViewController : UIImagePickerControllerDelegate, UINavigationC
             self.present(imagePicker, animated: true, completion: nil)
             
         }
-//        else {
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.allowsEditing = true
-//            imagePicker.sourceType = .camera
-//            imagePicker.delegate = self
-//            self.present(imagePicker, animated: true, completion: nil)
-//        }
+        else {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
 }

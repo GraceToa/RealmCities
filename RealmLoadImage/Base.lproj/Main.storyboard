@@ -103,7 +103,6 @@
                             </barButtonItem>
                             <barButtonItem systemItem="search" id="u08-Yv-x3K">
                                 <connections>
-                                    <action selector="searchBtn:" destination="BYZ-38-t0r" id="bQ2-WB-tBg"/>
                                     <segue destination="Ykg-8v-isu" kind="show" identifier="ShowSearch" id="0xX-2x-nw7"/>
                                 </connections>
                             </barButtonItem>
@@ -372,6 +371,6 @@
         <image name="placeholder" width="125" height="125"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JUl-7E-FOT"/>
+        <segue reference="rWt-xX-Lvi"/>
     </inferredMetricsTieBreakers>
 </document>
