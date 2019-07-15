@@ -6,7 +6,7 @@ App for macOS/swift, Realm database
 </td></tr></table>
 
 
-RealmCities:is an app used to create a list of cities, includes a crud in which a city is created and its reference (photo and country), it is added to a board that contains a list of all the cities added, from it You can access the detail of each one from which you can edit it, you have options for deletion by city and by list, it also includes a search by letters or words that accesses the database and performs a search filter.
+RealmCities: is an app used to create a list of cities, includes a crud in which a city is created and its reference (photo and country), it is added to a board that contains a list of all the cities added, from it You can access the detail of each one from which you can edit it, you have options for deletion by city and by list, it also includes a search by letters or words that accesses the database and performs a search filter.
 
 ## Feature
 - Swift 5
@@ -16,5 +16,6 @@ RealmCities:is an app used to create a list of cities, includes a crud in which 
 
 
 ## LINKS
+ You can see the application working in:
 - https://youtu.be/s7jXXVU7AAg
 
